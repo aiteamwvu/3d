@@ -1,7 +1,7 @@
 var table = [];
 
 var xmlhttp = new XMLHttpRequest();
-xmlhttp.open('GET', 'http://localhost:5000/?t=' + (new Date()).getTime(), true);
+xmlhttp.open('GET', 'http://aiwvu.ml:5000/?t=' + (new Date()).getTime(), true);
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4) {
         if(xmlhttp.status == 200) {
