@@ -1,16 +1,18 @@
 var table = [];
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.open('GET', 'http://aiwvu.ml:5000/?t=' + (new Date()).getTime(), true);
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4) {
-        if(xmlhttp.status == 200) {
-            table = JSON.parse(xmlhttp.responseText);
-            run();
-         }
-    }
-};
-xmlhttp.send(null);
+function search(query) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('GET', 'http://aiwvu.ml:5000/?q=' + query + '&t=' + (new Date()).getTime(), true);
+	xmlhttp.onreadystatechange = function() {
+	    if (xmlhttp.readyState == 4) {
+	        if(xmlhttp.status == 200) {
+	            table = JSON.parse(xmlhttp.responseText);
+	            run();
+	         }
+	    }
+	};
+	xmlhttp.send(null);
+}
 
 var camera, scene, renderer;
 var controls;
