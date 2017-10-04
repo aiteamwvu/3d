@@ -79,6 +79,55 @@ a {
 		color: rgba(127,255,255,0.75);
 	}
 
+.diamond {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  margin: 50px 0px 0px 100px;
+}
+
+	  .diamond .number {
+	    top: 10px;
+	    right: 0px;
+	    transform: rotate(45deg);
+	  }
+
+	  .diamond .symbol {
+	    top: 15px;
+	    left: 10px;
+	    right: 0px;
+	    transform: rotate(45deg);
+	  }
+
+	  .diamond .details {
+	    top: 65px;
+	    left: -20px;
+	    right: 35px;
+	    transform: rotate(45deg);
+	  }
+
+.circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+
+}
+	  .circle .number {
+	    top: 5px;
+	    right: 40px;
+	  }
+
+	  .circle .symbol {
+	    top: 25px;
+	  }
+
+	  .circle .details {
+	    bottom: 10px;
+	    left: 20px;
+	    right: 20px;
+	  }
+
 button {
 	color: rgba(127,255,255,0.75);
 	background: transparent;
