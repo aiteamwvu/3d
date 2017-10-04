@@ -34,6 +34,10 @@ function init() {
 		var element = document.createElement( 'div' );
 		element.className = 'element';
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+		if( table[ i + 5 ] == "Book" )
+			element.className += " circle";
+		else if( table[ i + 5 ] == "Blog" )
+			element.className += " diamond";
 		var number = document.createElement( 'div' );
 		number.className = 'number';
 		number.textContent = table[ i + 2 ];
