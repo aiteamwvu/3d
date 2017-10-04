@@ -37,7 +37,7 @@ function init() {
 		if( table[ i + 5 ] == "Book" )
 			element.className += " circle";
 		else if( table[ i + 5 ] == "Blog" )
-			element.className += " diamond";
+			element.className += " square";
 		var number = document.createElement( 'div' );
 		number.className = 'number';
 		number.textContent = table[ i + 2 ];
