@@ -34,6 +34,7 @@ a, h1, h2, h3 {
 	top: 20px;
 	right: 20px;
 	z-index: 2;
+	color: white;
 }
 
 #userView{
@@ -90,6 +91,12 @@ legend{
 	position: relative;
 	width: 100%;
 	text-align: center;
+}
+
+#container{
+	position: absolute;
+	top: 10px;
+	left: -25%;
 }
 
 .element {
