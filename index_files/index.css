@@ -87,8 +87,7 @@ legend{
 }
 
 #menu {
-	position: absolute;
-	bottom: 20px;
+	position: relative;
 	width: 100%;
 	text-align: center;
 }
