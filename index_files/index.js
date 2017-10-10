@@ -1,3 +1,134 @@
+ $(document).ready(function() {
+    
+    function getFileName(choice) {
+      var result = "";
+      switch (choice) {
+        case "machine learning":
+          result = "machine_learning.json";
+          break;
+        case "neural networks":
+          result = "neural_networks.json";
+          break;
+        case "semantic web":
+          result = "semantic_web.json";
+          break;
+        case "machine vision":
+          result = "machine_vision.json";
+          break;
+        case "artificial intelligence":
+          result = "ai.json";
+          break;
+        case "data mining":
+          result = "data_mining.json";
+          break;
+        case "natural language processing":
+          result = "natural_language_processing.json";
+          break;
+        case "robotics":
+          result = "robotics.json";
+          break;
+        case "deep learning":
+          result = "deep_learning.json";
+          break;
+        default:
+      }
+      return "data/" + result;
+    }
+
+    function walk(obj) {
+      $("#tempId").remove();
+      $("#listId").append("<span id=\"tempId\"></span>");
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          var val = obj[key];
+          $("#tempId").append(
+            "<p>" + key +
+            "<a href=\"" + val.link + "\">" +
+            val.title +
+            "</a>" + val.date + "</p>");
+        }
+      }
+    }
+
+    $("#btSelectId").click(function() {
+      $("#taListId").val($('#topicSelectId option:selected').val());
+      var fn = getFileName($('#topicSelectId option:selected').val());
+      console.log('filename ' + fn);
+      $.getJSON( fn, function( data ) {
+        walk(data);
+      });
+    });
+
+    $("#btTypeId").click(function() {
+      // alert("type " + $("#topicTypeId").val());
+      $("#taListId").val($("#topicTypeId").val());
+      var fn = getFileName($("#topicTypeId").val());
+      console.log('filename ' + fn);
+      $.getJSON( fn, function( data ) {
+        walk(data);
+      });
+    });
+
+    //$( ".controlgroup" ).controlgroup();
+
+    $( ".controlgroup-vertical" ).controlgroup({
+      "direction": "vertical"
+    });
+
+    var availableTags = [
+      "machine learning",
+      "neural networks",
+      "semantic web",
+      "machine vision",
+      "artificial intelligence",
+      "data mining",
+      "natural language processing",
+      "robotics",
+      "deep learning"
+    ];
+
+    $("#topicTypeId").autocomplete({
+      source: availableTags
+    });
+  });
+
+ $('#graphButton').click(function(e){    
+    $('#articleView, #graphButton').fadeOut('fast', function(){
+        $('#graphView, #articleButton').fadeIn('fast');
+    });
+});
+
+$('#articleButton').click(function(e){    
+    $('#graphView, #articleButton').fadeOut('fast', function(){
+        $('#articleView, #graphButton').fadeIn('fast');
+    });
+});
+
+ //*****************************GOOGLE SIGN IN***********************************************************
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    
+    $('#signIn').css("visibility", "hidden");
+    $('#signOut').css("visibility", "visible");
+    $('#name').text("Signed in: " + profile.getName());
+    $('#name').css("visibility", "visible");
+    
+  }
+    
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+
+//***************************************************GRAPH VIEW CODE********************************************
+
 var table = [];
 
 function search(query) {
