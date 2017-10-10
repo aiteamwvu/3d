@@ -5,12 +5,73 @@ html, body {
 body {
 	background-color: #000000;
 	margin: 0;
-	font-family: Helvetica, sans-serif;;
-	overflow: hidden;
+	font-family: Helvetica, sans-serif;
 }
 
-a {
+a, h1, h2, h3 {
 	color: #ffffff;
+}
+
+#head{
+	display: inline-block;
+}
+
+#signIn{
+	visibility: visible;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+#signOut{
+	visibility: hidden;
+	position: absolute;
+	top: 50px;
+	right: 20px
+}
+#name{
+	visibility: hidden;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	z-index: 2;
+}
+
+#userView{
+	visibility: visible;
+	border-right: solid #ccc 2px;
+}
+
+p{
+	color: white;
+}
+
+fieldset{
+	color: white;
+}
+
+legend{
+	font-size: 20px;
+}
+
+#articleView{
+	border: 1px yellow solid;
+}
+
+#graphButton{
+	position: absolute;
+	top: 20px;
+}
+
+#articleButton{
+	display: none;
+	position: absolute;
+	top: 20px;
+}
+
+#graphView{
+	display: none;
+	position: absolute;
+    top: 10px;
 }
 
 #info {
