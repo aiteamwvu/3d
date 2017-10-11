@@ -94,12 +94,14 @@
 
  $('#graphButton').click(function(e){    
     $('#articleView, #graphButton').fadeOut('fast', function(){
+	$('#graphView').css("visibility", "visible");
         $('#graphView, #articleButton').fadeIn('fast');
     });
 });
 
 $('#articleButton').click(function(e){    
     $('#graphView, #articleButton').fadeOut('fast', function(){
+	$('#graphView').css("visibility", "hidden");
         $('#articleView, #graphButton').fadeIn('fast');
     });
 });
@@ -125,6 +127,11 @@ function onSignIn(googleUser) {
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
+	 
+    $('#signIn').css("visibility", "visible");
+    $('#signOut').css("visibility", "hidden");
+    $('#name').text("");
+    $('#name').css("visibility", "hidden");
   }
 
 //***************************************************GRAPH VIEW CODE********************************************
