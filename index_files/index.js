@@ -1,4 +1,6 @@
  $(document).ready(function() {
+	 
+    var mainUrl = window.location.href + "#";
     
     function getFileName(choice) {
       var result = "";
@@ -60,6 +62,12 @@
     });
 
     $("#btTypeId").click(function() {
+      
+      window.location.href = mainUrl;
+      window.location.href += input;
+      $("#container").empty();
+      search(window.location.hash?window.location.hash.replace("#",""):"");
+
       // alert("type " + $("#topicTypeId").val());
       $("#taListId").val($("#topicTypeId").val());
       var fn = getFileName($("#topicTypeId").val());
@@ -168,7 +176,7 @@ function init() {
 	camera.position.z = 3000;
 	scene = new THREE.Scene();
 	// table
-	for ( var i = 0; i < table.length; i += 5 ) {
+	for ( var i = 0; i < table.length; i += 6 ) {
 		var element = document.createElement( 'div' );
 		element.className = 'element';
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
