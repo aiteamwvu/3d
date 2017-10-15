@@ -6,6 +6,7 @@ body {
 	background-color: #000000;
 	margin: 0;
 	font-family: Helvetica, sans-serif;
+	overflow: hidden;
 }
 
 a, h1, h2, h3 {
@@ -66,9 +67,9 @@ legend{
 }
 
 #graphView{
-	display: none;
+	visibility: hidden;
 	position: absolute;
-    top: 10px;
+    	top: 10px;
 }
 
 #info {
