@@ -77,12 +77,6 @@
       });
     });
 
-    //$( ".controlgroup" ).controlgroup();
-
-    $( ".controlgroup-vertical" ).controlgroup({
-      "direction": "vertical"
-    });
-
     var availableTags = [
       "machine learning",
       "neural networks",
