@@ -39,8 +39,11 @@ a, h1, h2, h3 {
 }
 
 #userView{
-	visibility: visible;
 	border-right: solid #ccc 2px;
+}
+
+.needLogIn{
+	visibility: hidden;
 }
 
 p{
@@ -66,10 +69,33 @@ legend{
 	top: 20px;
 }
 
+#contextButton{
+	position: absolute;
+	top: 20px;
+}
+
 #graphView{
 	visibility: hidden;
 	position: absolute;
     	top: 10px;
+}
+
+#contextChoice{
+	color: white;
+	width: 120px;
+	height: 100px;
+	position: absolute;
+	top: 20px;
+	left: 100px;
+}
+
+#saveContextButton{
+	padding: .05rem .5rem;
+    font-size: .7rem;
+}
+
+.list{
+	
 }
 
 #info {
