@@ -93,10 +93,6 @@
       "robotics",
       "deep learning"
     ];
-
-    $("#topicTypeId").autocomplete({
-      source: availableTags
-    });
   });
 
 function goToGraphView(){    
