@@ -1,6 +1,6 @@
  $(document).ready(function() {
 	 
-    var mainUrl = window.location.href + "#";
+    var mainUrl = window.location.href;
     
     function getFileName(choice) {
       var result = "";
@@ -63,9 +63,14 @@
 
     $("#btTypeId").click(function() {
       
+      var input = $("#topicTypeId").val();
+
       window.location.href = mainUrl;
       window.location.href += input;
+
       $("#container").empty();
+      $("#listArticles").empty();
+	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
 
       // alert("type " + $("#topicTypeId").val());
@@ -94,21 +99,39 @@
     });
   });
 
- $('#graphButton').click(function(e){    
+function goToGraphView(){    
     $('#articleView, #graphButton').fadeOut('fast', function(){
-	$('#graphView').css("visibility", "visible");
+    	$('#graphView').css("visibility", "visible");
         $('#graphView, #articleButton').fadeIn('fast');
     });
-});
+  }
 
-$('#articleButton').click(function(e){    
+function goToArticleView(){
     $('#graphView, #articleButton').fadeOut('fast', function(){
-	$('#graphView').css("visibility", "hidden");
+    	$('#graphView').css("visibility", "hidden");
         $('#articleView, #graphButton').fadeIn('fast');
     });
-});
+ }
 
- //*****************************GOOGLE SIGN IN***********************************************************
+ function pickChoice(){
+
+ 	var  choice = $('input[name="contextRadio"]:checked').val();
+ 	$('#contextChoice').collapse('hide');
+ }
+
+ //*****************************GOOGLE SIGN IN + GET USER FROM DB**********************************************
+
+function getUser(email, callback) {
+    $.getJSON('http://aiwvu.ml:5000/get_user?email=' + email + '&t=' + (new Date()).getTime(), function(data) {
+        callback(data);
+    });
+  }
+  
+ function setUser(email, keywords, callback) {
+    $.getJSON('http://aiwvu.ml:5000/set_user?email=' + email + '&keywords=' + keywords + '&t=' + (new Date()).getTime(), function(data) {
+        callback(data);
+    });
+  }
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
@@ -121,6 +144,16 @@ function onSignIn(googleUser) {
     $('#signOut').css("visibility", "visible");
     $('#name').text("Signed in: " + profile.getName());
     $('#name').css("visibility", "visible");
+	
+    $('#loginPromptId').css("visibility", "hidden");
+
+    getUser(profile.getEmail(),  function(userObject) {
+      //$('#userSetupId').css("display", "inline");
+      console.log("get keywords " + userObject.keywords);
+      //$('#dbKeywordsId').val(userObject.keywords);
+    });
+
+    $('.needLogIn').css("visibility", "visible");
     
   }
     
@@ -134,9 +167,12 @@ function onSignIn(googleUser) {
     $('#signOut').css("visibility", "hidden");
     $('#name').text("");
     $('#name').css("visibility", "hidden");
+	  
+    $('#loginPromptId').css("visibility", "visible");
+    $('.needLogIn').css("visibility", "hidden");
+    goToArticleView();
   }
-
-//***************************************************GRAPH VIEW CODE********************************************
+//*************************************************** SEARCH FUNCTION ********************************************
 
 var table = [];
 
@@ -153,6 +189,38 @@ function search(query) {
 	};
 	xmlhttp.send(null);
 }
+
+//***************************************************LIST ARTICLES********************************************
+
+
+function listing(){
+
+	var numArticlesToList = 5;
+
+	for( var i= 0; i < 6*numArticlesToList; i+=6){
+
+		var list = document.createElement('li');
+		list.className = 'list';
+		var title = table[i+1];
+		var content = title + '|' + "hhhhh";
+		list.innerHTML = "<a href='#'' onclick=\"openArticleInView('"+content+"')\">"+title+"</a>";
+		document.getElementById('listArticles').appendChild(list);
+	}
+}
+
+function openArticleInView(content){
+
+	goToArticleView();
+
+	var title = content.split('|')[0];
+	var text = content.split('|')[1];
+
+	$('#articleTitle').text(title);
+	$('#articleContent').text(text);
+}
+
+//***************************************************GRAPH VIEW CODE********************************************
+
 
 var camera, scene, renderer;
 var controls;
