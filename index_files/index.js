@@ -227,6 +227,7 @@ var targets = { table: [], sphere: [], helix: [], grid: [] };
 function run() {
 	init();
 	animate();
+	listing();
 }
 
 function init() {
