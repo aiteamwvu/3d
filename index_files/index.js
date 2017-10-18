@@ -30,9 +30,8 @@
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
     });
- });
-
-function getTopicsMenu() {
+	 
+   function getTopicsMenu() {
 
 	$('#userSetUpId').css("display", "none");
 	$('#userView').css("visibility", "visible");
@@ -54,7 +53,8 @@ function getTopicsMenu() {
 			$("#topicSelectId").append('<option value=' + ka[k] + '>' + ka[k] + '</option>');
 		}
 	});
-}
+    }
+ });
 
  function goToGraphView(){    
 	$('#articleView, #graphButton').fadeOut('fast', function(){
