@@ -174,7 +174,7 @@ function listing(){
 
 	var numArticlesToList = 5;
 
-	for( var i= 0; i < 6*numArticlesToList; i+=6){
+	for( var i= 0; i < 7*numArticlesToList; i+=7){
 
 		var list = document.createElement('li');
 		list.className = 'list';
@@ -216,7 +216,7 @@ function init() {
 	camera.position.z = 3000;
 	scene = new THREE.Scene();
 	// table
-	for ( var i = 0; i < table.length; i += 6 ) {
+	for ( var i = 0; i < table.length; i += 7 ) {
 		var element = document.createElement( 'div' );
 		element.className = 'element';
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
