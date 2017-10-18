@@ -1,7 +1,6 @@
  $(document).ready(function() {
 	 
     var mainUrl = window.location.href + '#';
-    var profile;
     var searchKey;
    
     $("#btnSelectId").click(function() {
@@ -30,8 +29,12 @@
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
     });
-	 
-   function getTopicsMenu() {
+	
+ });
+
+var profile;
+
+function getTopicsMenu() {
 
 	$('#userSetUpId').css("display", "none");
 	$('#userView').css("visibility", "visible");
@@ -54,7 +57,6 @@
 		}
 	});
     }
- });
 
  function goToGraphView(){    
 	$('#articleView, #graphButton').fadeOut('fast', function(){
