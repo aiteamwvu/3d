@@ -32,6 +32,30 @@
     });
  });
 
+function getTopicsMenu() {
+
+	$('#userSetUpId').css("display", "none");
+	$('#userView').css("visibility", "visible");
+
+	keys = $('#newKeywordsId').val().split(',');
+		setUser(profile.getEmail(), keys, function(userObject) {
+		console.log("set keywords " + userObject.keywords);
+	});
+
+	getUser(profile.getEmail(), function(userObject) {
+		var ka = cleanString(userObject.keywords);
+			$("#topicTypeId").autocomplete({
+				source: ka
+			});
+
+		$("#topicSelectId").empty();
+
+		for (var k in ka) {
+			$("#topicSelectId").append('<option value=' + ka[k] + '>' + ka[k] + '</option>');
+		}
+	});
+}
+
  function goToGraphView(){    
 	$('#articleView, #graphButton').fadeOut('fast', function(){
 		$('#graphView').css("visibility", "visible");
