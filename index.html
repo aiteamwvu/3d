@@ -58,32 +58,26 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
+					<div class="needLogIn" id="userSetUpId">
+						<textarea rows="3" cols="25" id="dbKeywordsId"></textarea>
+						<br>
+						<p>Enter new keywords separated by a comma</p>
+						<textarea rows="3" cols="25" id="newKeywordsId" placeholder="new keywords"></textarea><br>
+						<button id="continueId" onclick="getTopicsMenu()">Continue</button>
+					</div>
 					<div class="needLogIn" id="userView">
 						<fieldset>
 						    <legend>Select a Topic</legend>
-						    <div class="controlgroup">
 						      <select id="topicSelectId">
-						        <option value="machine learning">machine learning</option>
-						        <option value="neural networks">neural networks</option>
-						        <option value="semantic web">semantic web</option>
-						        <option value="machine vision">machine vision</option>
-						        <option value="artificial intelligence">artificial intelligence</option>
-						        <option value="data mining">data mining</option>
-						        <option value="natural language processing">natural language processing</option>
-						        <option value="robotics">robotics</option>
-						        <option value="deep learning">deep learning</option>
 						      </select>
-						      <button id="btSelectId">Submit</button>
-						    </div>
+						      <button id="btnSelectId">Submit</button>
 						  </fieldset>
 						  <br>
 						  <fieldset>
-						    <div class="controlgroup">
 						      <div class="ui-widget">
 						        <input id="topicTypeId" class="ui-textinput" placeholder="Search">
-						        <button id="btTypeId">Submit</button>
+						        <button id="btnTypeId">Submit</button>
 						      </div>
-						    </div>
 						  </fieldset>
 						  <br>
 						  <fieldset>
@@ -123,6 +117,7 @@
 		<script src="./index_files/CSS3DRenderer.js"></script>
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 		<script src="./index_files/bootstrap.min.js"></script>
 		<script src="./index_files/index.js"></script>
 		<script type="text/javascript">search(window.location.hash?window.location.hash.replace("#",""):"");</script>
