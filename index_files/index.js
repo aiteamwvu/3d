@@ -30,9 +30,9 @@
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
     });
-	 
-	 
-    function goToGraphView(){    
+ });
+
+ function goToGraphView(){    
 	$('#articleView, #graphButton').fadeOut('fast', function(){
 		$('#graphView').css("visibility", "visible");
 		$('#graphView, #articleButton').fadeIn('fast');
@@ -50,8 +50,6 @@
            var  choice = $('input[name="contextRadio"]:checked').val();
 	   $('#contextChoice').collapse('hide');
      }
-
- });
 
 
 
