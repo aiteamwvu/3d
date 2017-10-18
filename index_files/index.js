@@ -1,67 +1,24 @@
  $(document).ready(function() {
 	 
-    var mainUrl = window.location.href;
-    
-    function getFileName(choice) {
-      var result = "";
-      switch (choice) {
-        case "machine learning":
-          result = "machine_learning.json";
-          break;
-        case "neural networks":
-          result = "neural_networks.json";
-          break;
-        case "semantic web":
-          result = "semantic_web.json";
-          break;
-        case "machine vision":
-          result = "machine_vision.json";
-          break;
-        case "artificial intelligence":
-          result = "ai.json";
-          break;
-        case "data mining":
-          result = "data_mining.json";
-          break;
-        case "natural language processing":
-          result = "natural_language_processing.json";
-          break;
-        case "robotics":
-          result = "robotics.json";
-          break;
-        case "deep learning":
-          result = "deep_learning.json";
-          break;
-        default:
-      }
-      return "data/" + result;
-    }
+    var mainUrl = window.location.href + '#';
+    var profile;
+    var searchKey;
+   
+    $("#btnSelectId").click(function() {
+      
+      searchKey = $('#topicSelectId option:selected').val();
+      console.log('selected ' + searchKey);
 
-    function walk(obj) {
-      $("#tempId").remove();
-      $("#listId").append("<span id=\"tempId\"></span>");
-      for (var key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          var val = obj[key];
-          $("#tempId").append(
-            "<p>" + key +
-            "<a href=\"" + val.link + "\">" +
-            val.title +
-            "</a>" + val.date + "</p>");
-        }
-      }
-    }
+      window.location.href = mainUrl;
+      window.location.href += searchKey;
 
-    $("#btSelectId").click(function() {
-      $("#taListId").val($('#topicSelectId option:selected').val());
-      var fn = getFileName($('#topicSelectId option:selected').val());
-      console.log('filename ' + fn);
-      $.getJSON( fn, function( data ) {
-        walk(data);
-      });
+      $("#container").empty();
+      $("#listArticles").empty();
+
+      search(window.location.hash?window.location.hash.replace("#",""):"");
     });
 
-    $("#btTypeId").click(function() {
+    $("#btnTypeId").click(function() {
       
       var input = $("#topicTypeId").val();
 
@@ -72,50 +29,39 @@
       $("#listArticles").empty();
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
-
-      // alert("type " + $("#topicTypeId").val());
-      $("#taListId").val($("#topicTypeId").val());
-      var fn = getFileName($("#topicTypeId").val());
-      console.log('filename ' + fn);
-      $.getJSON( fn, function( data ) {
-        walk(data);
-      });
     });
+	 
+	 
+    function goToGraphView(){    
+	$('#articleView, #graphButton').fadeOut('fast', function(){
+		$('#graphView').css("visibility", "visible");
+		$('#graphView, #articleButton').fadeIn('fast');
+    	});
+     }
+	 
+    function goToArticleView(){
+	$('#graphView, #articleButton').fadeOut('fast', function(){
+		$('#graphView').css("visibility", "hidden");
+		$('#articleView, #graphButton').fadeIn('fast');
+	});
+     }
 
-    var availableTags = [
-      "machine learning",
-      "neural networks",
-      "semantic web",
-      "machine vision",
-      "artificial intelligence",
-      "data mining",
-      "natural language processing",
-      "robotics",
-      "deep learning"
-    ];
-  });
+     function pickChoice(){
+           var  choice = $('input[name="contextRadio"]:checked').val();
+	   $('#contextChoice').collapse('hide');
+     }
 
-function goToGraphView(){    
-    $('#articleView, #graphButton').fadeOut('fast', function(){
-    	$('#graphView').css("visibility", "visible");
-        $('#graphView, #articleButton').fadeIn('fast');
-    });
-  }
+ });
 
-function goToArticleView(){
-    $('#graphView, #articleButton').fadeOut('fast', function(){
-    	$('#graphView').css("visibility", "hidden");
-        $('#articleView, #graphButton').fadeIn('fast');
-    });
- }
 
- function pickChoice(){
-
- 	var  choice = $('input[name="contextRadio"]:checked').val();
- 	$('#contextChoice').collapse('hide');
- }
 
  //*****************************GOOGLE SIGN IN + GET USER FROM DB**********************************************
+
+function getKeywords(email, callback) {
+	$.getJSON('http://aiwvu.ml:5000/get_keywords?email=' + email + '&t=' + (new Date()).getTime(), function(data) {
+	    callback(data);
+	});
+}
 
 function getUser(email, callback) {
     $.getJSON('http://aiwvu.ml:5000/get_user?email=' + email + '&t=' + (new Date()).getTime(), function(data) {
@@ -128,6 +74,17 @@ function getUser(email, callback) {
         callback(data);
     });
   }
+
+function cleanString(ks) {
+    var ta = ks.toString().split(',');
+    var at = [];
+    for (var t in ta){
+      if (ta[t].length > 0) {
+        at.push(ta[t]);
+      }
+    }
+    return at;
+}
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
@@ -144,13 +101,13 @@ function onSignIn(googleUser) {
     $('#loginPromptId').css("visibility", "hidden");
 
     getUser(profile.getEmail(),  function(userObject) {
-      //$('#userSetupId').css("display", "inline");
       console.log("get keywords " + userObject.keywords);
-      //$('#dbKeywordsId').val(userObject.keywords);
+      var keys = cleanString(userObject.keywords);
+      $('#dbKeywordsId').val(keys);
     });
 
     $('.needLogIn').css("visibility", "visible");
-    
+    $('#userView').css("visibility", "hidden");
   }
     
   function signOut() {
@@ -198,8 +155,8 @@ function listing(){
 		var list = document.createElement('li');
 		list.className = 'list';
 		var title = table[i+1];
-		var content = title + '|' + "hhhhh";
-		list.innerHTML = "<a href='#'' onclick=\"openArticleInView('"+content+"')\">"+title+"</a>";
+		var content = title + '|' + "content of article";
+		list.innerHTML = "<a href='#'' onclick=\"openArticleInView('"+content+"')\">"+title+"</a>"+table[i+2];
 		document.getElementById('listArticles').appendChild(list);
 	}
 }
