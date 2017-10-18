@@ -38,7 +38,7 @@ a, h1, h2, h3 {
 	color: white;
 }
 
-#userView{
+#userView, #userSetUpId{
 	border-right: solid #ccc 2px;
 }
 
@@ -48,6 +48,16 @@ a, h1, h2, h3 {
 
 p{
 	color: white;
+}
+
+.ui-menu-item{
+	color: black;
+	background-color: white;
+	width: 25%;
+}
+
+.ui-helper-hidden-accessible{
+	display: none;
 }
 
 fieldset{
@@ -90,7 +100,7 @@ legend{
 }
 
 #saveContextButton{
-	padding: .05rem .5rem;
+    padding: .05rem .5rem;
     font-size: .7rem;
 }
 
