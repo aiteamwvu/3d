@@ -1,6 +1,6 @@
  $(document).ready(function() {
 	 
-    var mainUrl = window.location.href + '#';
+    var mainUrl = 'http://aiwvu.ml/3d/' + '#';
     var searchKey;
    
     $("#btnSelectId").click(function() {
