@@ -178,7 +178,7 @@ function listing(){
 
 		var list = document.createElement('li');
 		list.className = 'list';
-		var title = table[i+1];
+		var title = table[i+5];
 		var content = title + '|' + "content of article";
 		list.innerHTML = "<a href='#'' onclick=\"openArticleInView('"+content+"')\">"+title+"</a>"+table[i+2];
 		document.getElementById('listArticles').appendChild(list);
