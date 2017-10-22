@@ -196,7 +196,7 @@ function listing(){
 		var url = table[ i ].split('|')[0];
 		var src = table[i].split('|')[1];
 
-		listed.push(url);
+		//listed.push(url);
 
 		//replace single quote by $ to avoid link bug
 		title1 = title.replace(/'/g, "$");
@@ -279,8 +279,8 @@ function init() {
 		objects.push( object );
 		//
 		var object = new THREE.Object3D();
-		object.position.x = ( table[ i + 4 ] * 310 ) - 1330;
-		object.position.y = - ( table[ i + 3 ] * 360 ) + 990;
+		object.position.x = ( table[ i + 4 ] * 310 ) - 2230;
+		object.position.y = - ( table[ i + 3 ] * 360 ) + 1990;
 		targets.table.push( object );
 	}
 
