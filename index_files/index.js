@@ -208,7 +208,7 @@ function listing(){
 	}
 }
 
-function openArticleInView(content){
+function openArticleInView(url){
 
 	goToArticleView();
 
