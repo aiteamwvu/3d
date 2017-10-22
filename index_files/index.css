@@ -6,40 +6,24 @@ body {
 	background-color: #000000;
 	margin: 0;
 	font-family: Helvetica, sans-serif;
-	overflow: hidden;
+	overflow: scroll;
 }
 
-a, h1, h2, h3 {
+a, h1, h2, h3, #loginPromptId {
 	color: #ffffff;
-}
-
-#head{
-	display: inline-block;
 }
 
 #signIn{
 	visibility: visible;
-	position: absolute;
-	top: 20px;
-	right: 20px;
 }
 #signOut{
 	visibility: hidden;
-	position: absolute;
-	top: 50px;
-	right: 20px
-}
-#name{
-	visibility: hidden;
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	z-index: 2;
-	color: white;
 }
 
-#userView, #userSetUpId{
-	border-right: solid #ccc 2px;
+#name{
+	visibility: hidden;
+	z-index: 2;
+	color: white;
 }
 
 .needLogIn{
@@ -60,6 +44,12 @@ p{
 	display: none;
 }
 
+.list-group-item{
+	background-color: #000000;
+	color: white;
+	padding: .35rem .25rem;
+}
+
 fieldset{
 	color: white;
 }
@@ -68,20 +58,47 @@ legend{
 	font-size: 20px;
 }
 
-#graphButton{
-	position: absolute;
-	top: 20px;
+.dropdown-menu, .dropdown-item, .card{
+	background-color: #000000;
+	color: white;
+}
+
+.bg-black{
+	background-color: #000000;
+	color: rgba(127,255,255,0.75);
+}
+
+.card{
+	border: 1px  rgba(127,255,255,0.75) solid;
+	border-radius: 5px;
+	width: 23rem;
+}
+
+.ullist{
+	display: inline-block;
+	width: 45%;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+	color: rgba(127,255,255,0.75);
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.nav-link{
+	display: inline;
+}
+
+.badge-info{
+	margin-left: 9px;
+}
+
+.thumbimg{
+	width: 40px;
 }
 
 #articleButton{
 	display: none;
-	position: absolute;
-	top: 20px;
-}
-
-#contextButton{
-	position: absolute;
-	top: 20px;
 }
 
 #graphView{
@@ -94,18 +111,13 @@ legend{
 	color: white;
 	width: 120px;
 	height: 100px;
-	position: absolute;
-	top: 20px;
-	left: 100px;
 }
 
 #saveContextButton{
-    padding: .05rem .5rem;
     font-size: .7rem;
-}
-
-.list{
-	
+    width: 50%;
+    padding: .25rem 1.5rem;
+    color: rgba(127,255,255,0.75);
 }
 
 #info {
@@ -127,15 +139,9 @@ legend{
 	z-index:3;
 }
 
-#container{
-	position: absolute;
-	top: 10px;
-	left: -25%;
-}
-
 .element {
-	width: 120px;
-	height: 160px;
+	width: 280px;
+	height: 340x;
 	box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
 	border: 1px solid rgba(127,255,255,0.25);
 	text-align: center;
@@ -151,13 +157,13 @@ legend{
 		position: absolute;
 		top: 10px;
 		right: 20px;
-		font-size: 12px;
+		font-size: 32px;
 		color: rgba(127,255,255,0.75);
 	}
 
 	.element .symbol {
 		position: absolute;
-		top: 30px;
+		top: 60px;
 		left: 0px;
 		right: 0px;
 		font-size: 60px;
@@ -167,8 +173,8 @@ legend{
 	}
 
 	.element .symbol img {
-		max-height: 60px;
-		max-width: 100px;
+		max-height: 190px;
+		max-width: 240px;
 	}
 
 	.element .details {
@@ -176,7 +182,7 @@ legend{
 		bottom: 15px;
 		left: 0px;
 		right: 0px;
-		font-size: 12px;
+		font-size: 32px;
 		color: rgba(127,255,255,0.75);
 	}
 
