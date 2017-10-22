@@ -279,8 +279,8 @@ function init() {
 		objects.push( object );
 		//
 		var object = new THREE.Object3D();
-		object.position.x = ( table[ i + 4 ] * 410 ) - 2230;
-		object.position.y = - ( table[ i + 3 ] * 360 ) + 1190;
+		object.position.x = ( table[ i + 4 ] * 380 ) - 2230;
+		object.position.y = - ( table[ i + 3 ] * 400 ) + 1190;
 		targets.table.push( object );
 	}
 
