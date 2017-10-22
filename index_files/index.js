@@ -280,7 +280,7 @@ function init() {
 		//
 		var object = new THREE.Object3D();
 		object.position.x = ( table[ i + 4 ] * 310 ) - 2230;
-		object.position.y = - ( table[ i + 3 ] * 360 ) + 1990;
+		object.position.y = - ( table[ i + 3 ] * 360 ) + 1190;
 		targets.table.push( object );
 	}
 
