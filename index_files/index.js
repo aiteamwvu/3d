@@ -18,8 +18,10 @@
     });
 
     $("#btnTypeId").click(function() {
-      
+      alert("clicked");
       var input = $("#topicTypeId").val();
+	
+	    alert(input);
 
       window.location.href = mainUrl;
       window.location.href += input;
@@ -228,7 +230,7 @@ function openArticleInView(url){
 	});*/
 
 	$('#articleTitle').text(title1);
-	$('#articleContent').text(content);
+	//$('#articleContent').text(content);
 }
 
 //***************************************************GRAPH VIEW CODE********************************************
