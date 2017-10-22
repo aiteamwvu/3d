@@ -10,80 +10,95 @@
 		<link rel="stylesheet" type="text/css" href="./index_files/index.css">
 	</head>
 	<body data-gr-c-s-loaded="true" style="">
-		<div class="container-fluid" id="head">
-			<div class="row">
-				<div class="col-md-4">
-					<img src="./index_files/logo.png">
-					<br/>
-					<div id="loginPromptId">
-					    <p>Login using your gmail account</p>
-					</div>
-				</div>
-				<div class="col-md-2 needLogIn">
-				    <button id="graphButton" onclick="goToGraphView();">Go to Graph View</button>
-				    <button id="articleButton" onclick="goToArticleView();">Go to Article View</button>
-				</div>
-				<div class="col-md-4 needLogIn">
-				  	<button id="contextButton" type="button" data-toggle="collapse" data-target="#contextChoice" aria-expanded="false" aria-controls="contextChoice">
-				    Context
-				  	</button>
-				  	<div class="collapse" id="contextChoice">
-				  		<div class="form-check">
-							<label class="form-check-label">
+		<nav class="navbar navbar-expand-lg nav-fill navbar-dark bg-black">
+			<img class="navbar-brand" src="logo.png">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item" id="loginPromptId">Login using your gmail account</li>
+					<li class="nav-item needLogIn mr-sm-3 mb-sm-2 pt-sm-1 pb-sm-1"><button id="graphButton" onclick="goToGraphView();">Go to Graph View</button></li>
+					<li class="nav-item needLogIn mr-sm-3 mb-sm-2 pt-sm-1 pb-sm-1"><button id="articleButton" onclick="goToArticleView();">Go to Article View</button></li>
+					<li class="nav-item dropdown needLogIn mb-sm-4">
+				       <button type="button" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Context</button>
+				        <div class="dropdown-menu form-check" aria-labelledby="navbarDropdown">
+				          <label class="form-check-label dropdown-item">
 							<input class="form-check-input" type="radio" name="contextRadio" id="professional" value="professional" checked>
 							Professional
 							</label>
-							<label class="form-check-label">
+							<label class="form-check-label dropdown-item">
 							<input class="form-check-input" type="radio" name="contextRadio" id="research" value="research" checked>
 							Research
 							</label>
-							<label class="form-check-label">
+							<label class="form-check-label dropdown-item">
 							<input class="form-check-input" type="radio" name="contextRadio" id="studies" value="studies" checked>
 							Studies
 							</label>
-							<label class="form-check-label">
+							<label class="form-check-label dropdown-item">
 							<input class="form-check-input" type="radio" name="contextRadio" id="social" value="social" checked>
 							Social
 							</label>
-							<br/>
-							<button class="btn-sm" id="saveContextButton" onclick="pickChoice();">Save</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="g-signin2" data-onsuccess="onSignIn" id="signIn"></div>
-					<div id="name"></div>
-					<a href="#" onclick="signOut();" id="signOut">Sign out</a>
-				</div>
+				            <button class="btn-sm dropdown-item" id="saveContextButton">Save</button>
+				        </div>
+				      </li>
+			    </ul>
+			    <ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<div class="g-signin2" data-onsuccess="onSignIn" id="signIn"></div>
+						<div id="name"></div>
+						<a href="#" onclick="signOut();" id="signOut">Sign out</a>
+					</li>
+				</ul>
 			</div>
+		</nav>
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4">
-					<div class="needLogIn" id="userSetUpId">
-						<textarea rows="3" cols="25" id="dbKeywordsId"></textarea>
-						<br>
-						<p>Enter new keywords separated by a comma</p>
-						<textarea rows="3" cols="25" id="newKeywordsId" placeholder="new keywords"></textarea><br>
-						<button id="continueId" onclick="getTopicsMenu()">Continue</button>
+					<div class="needLogIn card userSetUpId">
+						  <div class="card-body">
+						    <h4 class="card-title">Your Keywords</h4>
+						    <ul class="ullist" id="listKeywords">
+						    </ul>
+						    <ul class="ullist" id="listKeywords2">
+						    </ul>
+						  </div>
 					</div>
+					<br/>
+					<div class="needLogIn card userSetUpId">
+						<div class="card-body">
+						<h6 class="card-title">Add new keywords <small>(separated by a comma)</small></h6>
+						<textarea  class="col-10 align-self-center" rows="3" cols="10" id="newKeywordsId" placeholder="new keywords"></textarea>
+						</div>
+					</div>
+					<br/>
+					<button class="userSetUpId align-self-center" id="continueId" onclick="getTopicsMenu()">Continue</button>
 					<div class="needLogIn" id="userView">
-						<fieldset>
-						    <legend>Select a Topic</legend>
-						      <select id="topicSelectId">
-						      </select>
-						      <button id="btnSelectId">Submit</button>
-						  </fieldset>
-						  <br>
-						  <fieldset>
-						      <div class="ui-widget">
-						        <input id="topicTypeId" class="ui-textinput" placeholder="Search">
-						        <button id="btnTypeId">Submit</button>
-						      </div>
-						  </fieldset>
-						  <br>
+						<div class="card" style="width: 20rem;">
+						  <div class="card-body">
+						    <h4 class="card-title">Select or Enter a Topic</h4>
+						    <fieldset>
+						    	<div class="form-inline">
+							      <select class="form-control" id="topicSelectId">
+							      </select>
+							      <button class="btn-sm ml-sm-2" id="btnSelectId">Submit</button>
+							    </div>
+							</fieldset>
+							<br>
+							<fieldset>
+							    <div class="form-inline ui-widget">
+							        <input id="topicTypeId" class="form-control ui-textinput" placeholder="Search">
+							        <button class="btn-sm ml-sm-2" id="bntTypeId">Submit</button>
+							    </div>
+						    </fieldset>
+						  </div>
+						</div>
+						<br/>
 						  <fieldset>
 						    <legend>5 Most recent Articles</legend>
 							    <div>
-							    	<ul id="listArticles">
+							    	<ul class="list-group" id="listArticles">
 							    	</ul>
 							    </div>
 						  </fieldset>
@@ -118,6 +133,7 @@
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 		<script src="./index_files/bootstrap.min.js"></script>
 		<script src="./index_files/index.js"></script>
 		<script type="text/javascript">search(window.location.hash?window.location.hash.replace("#",""):"");</script>
