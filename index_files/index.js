@@ -29,7 +29,11 @@
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
     });
-	
+	 
+    $("#saveContextButton").click(function() {
+      var  choice = $('input[name="contextRadio"]:checked').val();
+		//alert(choice);
+    });	
  });
 
 var profile;
@@ -37,7 +41,7 @@ var profile;
 function getTopicsMenu() {
 
 	$('#userSetUpId').css("display", "none");
-	$('#userView').css("visibility", "visible");
+	$('#userView').css("display", "inline");
 
 	keys = $('#newKeywordsId').val().split(',');
 		setUser(profile.getEmail(), keys, function(userObject) {
@@ -45,15 +49,15 @@ function getTopicsMenu() {
 	});
 
 	getUser(profile.getEmail(), function(userObject) {
-		var ka = cleanString(userObject.keywords);
+		var userKeys = cleanString(userObject.keywords);
 			$("#topicTypeId").autocomplete({
-				source: ka
+				source: userKeys
 			});
 
 		$("#topicSelectId").empty();
 
-		for (var k in ka) {
-			$("#topicSelectId").append('<option value=' + ka[k] + '>' + ka[k] + '</option>');
+		for (var k in userKeys) {
+			$("#topicSelectId").append('<option value=' + userKeys[k] + '>' + userKeys[k] + '</option>');
 		}
 	});
     }
@@ -71,13 +75,6 @@ function getTopicsMenu() {
 		$('#articleView, #graphButton').fadeIn('fast');
 	});
      }
-
-     function pickChoice(){
-           var  choice = $('input[name="contextRadio"]:checked').val();
-	   $('#contextChoice').collapse('hide');
-     }
-
-
 
  //*****************************GOOGLE SIGN IN + GET USER FROM DB**********************************************
 
@@ -117,21 +114,37 @@ function onSignIn(googleUser) {
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     
-    $('#signIn').css("visibility", "hidden");
+    $('#signIn').css("display", "none");
     $('#signOut').css("visibility", "visible");
     $('#name').text("Signed in: " + profile.getName());
     $('#name').css("visibility", "visible");
 	
-    $('#loginPromptId').css("visibility", "hidden");
+    $('#loginPromptId').css("display", "none");
 
     getUser(profile.getEmail(),  function(userObject) {
       console.log("get keywords " + userObject.keywords);
       var keys = cleanString(userObject.keywords);
-      $('#dbKeywordsId').val(keys);
+      
+      $("#listKeywords").empty();
+      $("#listKeywords2").empty();
+
+      for(var i =0; i <= keys.length/2; i++){
+      	var list = document.createElement('li');
+		list.className = 'list';
+		list.innerHTML = keys[i];
+		document.getElementById('listKeywords').appendChild(list);
+      }
+
+      for(var i =Math.round(keys.length/2)+1; i < keys.length; i++){
+      	var list = document.createElement('li');
+		list.className = 'list';
+		list.innerHTML = keys[i];
+		document.getElementById('listKeywords2').appendChild(list);
+      }
     });
 
     $('.needLogIn').css("visibility", "visible");
-    $('#userView').css("visibility", "hidden");
+    $('#userView').css("display", "none");
   }
     
   function signOut() {
@@ -140,12 +153,12 @@ function onSignIn(googleUser) {
       console.log('User signed out.');
     });
 	 
-    $('#signIn').css("visibility", "visible");
+    $('#signIn').css("display", "inline");
     $('#signOut').css("visibility", "hidden");
     $('#name').text("");
     $('#name').css("visibility", "hidden");
 	  
-    $('#loginPromptId').css("visibility", "visible");
+    $('#loginPromptId').css("display", "inline");
     $('.needLogIn').css("visibility", "hidden");
     goToArticleView();
   }
@@ -168,20 +181,30 @@ function search(query) {
 }
 
 //***************************************************LIST ARTICLES********************************************
-
+//var listed = [];
 
 function listing(){
 
 	var numArticlesToList = 5;
+	var j = 0;
 
 	for( var i= 0; i < 7*numArticlesToList; i+=7){
 
 		var list = document.createElement('li');
-		list.className = 'list';
+		list.className = 'list-group-item d-flex justify-content-between align-items-center';
 		var title = table[i+6];
-		var content = title + '|' + "content of article";
-		list.innerHTML = "<a href='#'' onclick=\"openArticleInView('"+content+"')\">"+title+"</a> - "+table[i+2];
+		var url = table[ i ].split('|')[0];
+		var src = table[i].split('|')[1];
+
+		listed.push(url);
+
+		//replace single quote by $ to avoid link bug
+		title1 = title.replace(/'/g, "$");
+
+		list.innerHTML = "<div class='media'><img class='mr-2 thumbimg' src='"+src+"' ><div class='media-body'><a href='#'' onclick=\"openArticleInView('"+title1+"')\">"+title+"</a><span class='badge badge-pill badge-info'>"+table[i+2]+"</span></div></div>";
 		document.getElementById('listArticles').appendChild(list);
+
+		j++;
 	}
 }
 
@@ -189,11 +212,23 @@ function openArticleInView(content){
 
 	goToArticleView();
 
-	var title = content.split('|')[0];
-	var text = content.split('|')[1];
+	//url = listed[index];
 
-	$('#articleTitle').text(title);
-	$('#articleContent').text(text);
+	//replace $ by single quote
+	title1 = url.replace(/\$/g, "'");
+
+	//url = "https://www.digitaltrends.com/web/how-to-uninstall-chrome-extensions/";
+
+	/*getContent(url, function(articleObject){
+		console.log("article content " + articleObject.title);
+		var title = articleObject.title;
+		var author = articleObject.author;
+		var content = articleObject.content;
+		var source = articleObject.source;
+	});*/
+
+	$('#articleTitle').text(title1);
+	$('#articleContent').text(content);
 }
 
 //***************************************************GRAPH VIEW CODE********************************************
@@ -216,7 +251,7 @@ function init() {
 	camera.position.z = 3000;
 	scene = new THREE.Scene();
 	// table
-	for ( var i = 0; i < table.length; i += 7 ) {
+	for ( var i = 0; i < table.length-(7*75); i += 7 ) {
 		var element = document.createElement( 'div' );
 		element.className = 'element';
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
@@ -244,8 +279,8 @@ function init() {
 		objects.push( object );
 		//
 		var object = new THREE.Object3D();
-		object.position.x = ( table[ i + 3 ] * 140 ) - 1330;
-		object.position.y = - ( table[ i + 4 ] * 180 ) + 990;
+		object.position.x = ( table[ i + 4 ] * 310 ) - 1330;
+		object.position.y = - ( table[ i + 3 ] * 360 ) + 990;
 		targets.table.push( object );
 	}
 
@@ -258,7 +293,7 @@ function init() {
 		var phi = Math.acos( -1 + ( 2 * i ) / l );
 		var theta = Math.sqrt( l * Math.PI ) * phi;
 		var object = new THREE.Object3D();
-		spherical.set( 800, phi, theta );
+		spherical.set( 1200, phi, theta );
 		object.position.setFromSpherical( spherical );
 		vector.copy( object.position ).multiplyScalar( 2 );
 		object.lookAt( vector );
@@ -271,10 +306,10 @@ function init() {
 	var cylindrical = new THREE.Cylindrical();
 
 	for ( var i = 0, l = objects.length; i < l; i ++ ) {
-		var theta = i * 0.175 + Math.PI;
-		var y = - ( i * 8 ) + 450;
+		var theta = i * 100.175 + Math.PI;
+		var y = - ( i * 40 ) + 750;
 		var object = new THREE.Object3D();
-		cylindrical.set( 900, theta, y );
+		cylindrical.set( 1100, theta, y );
 		object.position.setFromCylindrical( cylindrical );
 		vector.x = object.position.x * 2;
 		vector.y = object.position.y;
@@ -287,9 +322,9 @@ function init() {
 
 	for ( var i = 0; i < objects.length; i ++ ) {
 		var object = new THREE.Object3D();
-		object.position.x = ( ( i % 5 ) * 400 ) - 800;
-		object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 400 ) + 800;
-		object.position.z = ( Math.floor( i / 25 ) ) * 1000 - 2000;
+		object.position.x = ( ( i % 5 ) * 600 ) - 2500;
+		object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 600 ) + 1000;
+		object.position.z = ( Math.floor( i / 25 ) ) * 800 - 2000;
 		targets.grid.push( object );
 	}
 	//
