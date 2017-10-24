@@ -98,6 +98,12 @@ function getUser(email, callback) {
     });
   }
 
+function getContent(url, callback){
+	$.getJSON('http://aiwvu.ml:5000/get_content?url=' + url + '&t=' + (new Date()).getTime(), function(data){
+		callback(data);
+	});
+}
+
 function cleanString(ks) {
     var ta = ks.toString().split(',');
     var at = [];
@@ -188,7 +194,6 @@ function search(query) {
 function listing(){
 
 	var numArticlesToList = 5;
-	var j = 0;
 
 	for( var i= 0; i < 8*numArticlesToList; i+=8){
 
@@ -198,15 +203,8 @@ function listing(){
 		var url = table[ i ].split('|')[0];
 		var src = table[i].split('|')[1];
 
-		//listed.push(url);
-
-		//replace single quote by $ to avoid link bug
-		title1 = title.replace(/'/g, "$");
-
-		list.innerHTML = "<div class='media'><img class='mr-2 thumbimg' src='"+src+"' ><div class='media-body'><a href='#'' onclick=\"openArticleInView('"+title1+"')\">"+title+"</a><span class='badge badge-pill badge-info'>"+table[i+2]+"</span></div></div>";
+		list.innerHTML = "<div class='media'><img class='mr-2 thumbimg' src='"+src+"' ><div class='media-body'><a href='#'' onclick=\"openArticleInView('"+url+"')\">"+title+"</a><span class='badge badge-pill badge-info'>"+table[i+2]+"</span></div></div>";
 		document.getElementById('listArticles').appendChild(list);
-
-		j++;
 	}
 }
 
@@ -214,23 +212,30 @@ function openArticleInView(url){
 
 	goToArticleView();
 
-	//url = listed[index];
+	getContent(url, function(articleObject){
+		console.log("article content " + articleObject[2]);
+		var title = articleObject[2];
+		var author = articleObject[1];
+		var content = articleObject[4];
+		var source = articleObject[3];
+		var videolink = articleObject[5];
 
-	//replace $ by single quote
-	title1 = url.replace(/\$/g, "'");
+		var info = "From: " + author + " - <i>" + source + "</i>";
 
-	//url = "https://www.digitaltrends.com/web/how-to-uninstall-chrome-extensions/";
+		$('#articleTitle').text(title);
+		$('#articleAuthorSource').html(info);
+		$('#articleContent').html(content);
 
-	/*getContent(url, function(articleObject){
-		console.log("article content " + articleObject.title);
-		var title = articleObject.title;
-		var author = articleObject.author;
-		var content = articleObject.content;
-		var source = articleObject.source;
-	});*/
-
-	$('#articleTitle').text(title1);
-	//$('#articleContent').text(content);
+		if (videolink != ""){
+			var video = $('<video />', {
+			    id: 'video',
+			    src: videolink,
+			    type: 'video/mp4',
+			    controls: true
+			});
+			video.appendTo($('#articleContent'));
+		}	
+	});
 }
 
 //***************************************************GRAPH VIEW CODE********************************************
@@ -253,7 +258,7 @@ function init() {
 	camera.position.z = 3000;
 	scene = new THREE.Scene();
 	// table
-	for ( var i = 0; i < table.length-(8*75); i += 8 ) {
+	for ( var i = 0; i < table.length; i += 8 ) {
 		var element = document.createElement( 'div' );
 		element.className = 'element';
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
