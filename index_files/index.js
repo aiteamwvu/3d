@@ -1,6 +1,7 @@
- $(document).ready(function() {
-	 
-    var mainUrl = 'http://aiwvu.ml/3d/' + '#';
+var mainUrl = 'http://aiwvu.ml/3d/' + '#';
+
+$(document).ready(function() {
+	
     var searchKey;
    
     $("#btnSelectId").click(function() {
@@ -16,21 +17,6 @@
 
       search(window.location.hash?window.location.hash.replace("#",""):"");
     });
-
-    /*$("#btnTypeId").click(function() {
-      alert("clicked");
-      var input = $("#topicTypeId").val();
-	
-	    alert(input);
-
-      window.location.href = mainUrl;
-      window.location.href += input;
-
-      $("#container").empty();
-      $("#listArticles").empty();
-	    
-      search(window.location.hash?window.location.hash.replace("#",""):"");
-    });*/
 	 
     $("#saveContextButton").click(function() {
       var  choice = $('input[name="contextRadio"]:checked').val();
@@ -64,11 +50,17 @@ function getTopicsMenu() {
 	});
     }
 
-function search(){
+function searchInput(){
 	
 	alert("clicked search fct");
 	var input = $("#topicTypeId").val();
-	alert(input);
+	window.location.href = mainUrl;
+        window.location.href += input;
+
+      $("#container").empty();
+      $("#listArticles").empty();
+	    
+      search(window.location.hash?window.location.hash.replace("#",""):"");
 	
 }
 
