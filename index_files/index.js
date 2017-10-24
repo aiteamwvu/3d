@@ -64,6 +64,14 @@ function getTopicsMenu() {
 	});
     }
 
+function search(){
+	
+	alert("clicked search fct");
+	var input = $("#topicTypeId").val();
+	alert(input);
+	
+}
+
  function goToGraphView(){    
 	$('#articleView, #graphButton').fadeOut('fast', function(){
 		$('#graphView').css("visibility", "visible");
