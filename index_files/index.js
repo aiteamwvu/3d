@@ -17,7 +17,7 @@
       search(window.location.hash?window.location.hash.replace("#",""):"");
     });
 
-    $("#btnTypeId").click(function() {
+    /*$("#btnTypeId").click(function() {
       alert("clicked");
       var input = $("#topicTypeId").val();
 	
@@ -30,7 +30,7 @@
       $("#listArticles").empty();
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
-    });
+    });*/
 	 
     $("#saveContextButton").click(function() {
       var  choice = $('input[name="contextRadio"]:checked').val();
