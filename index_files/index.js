@@ -193,7 +193,7 @@ function search(query) {
 
 function listing(){
 
-	var numArticlesToList = 5;
+	var numArticlesToList = 10;
 
 	for( var i= 0; i < 8*numArticlesToList; i+=8){
 
