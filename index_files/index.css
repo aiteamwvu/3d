@@ -13,6 +13,10 @@ a, h1, h2, h3, #loginPromptId {
 	color: #ffffff;
 }
 
+h6 {
+	color: rgba(127,255,255,0.75);
+}
+
 #signIn{
 	visibility: visible;
 }
@@ -101,6 +105,11 @@ legend{
 	display: none;
 }
 
+#userView{
+	position: absolute;
+	top: 0px;
+}
+
 #graphView{
 	visibility: hidden;
 	position: absolute;
@@ -118,6 +127,28 @@ legend{
     width: 50%;
     padding: .25rem 1.5rem;
     color: rgba(127,255,255,0.75);
+}
+
+.content{
+	color: white;
+}
+
+.content img{
+	width : 50%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.content video{
+	width : 75%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.content a{
+	color: rgba(127,255,255,0.75);
 }
 
 #info {
