@@ -52,7 +52,6 @@ function getTopicsMenu() {
 
 function searchInput(){
 	
-	alert("clicked search fct");
 	var input = $("#topicTypeId").val();
 	window.location.href = mainUrl;
         window.location.href += input;
