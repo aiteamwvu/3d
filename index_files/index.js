@@ -103,6 +103,12 @@ function getContent(url, callback){
 	});
 }
 
+function setRating(rating, url, callback){
+	$.getJSON('http://aiwvu.ml:5000/set_rating?rating=' + rating + '&url=' + url + '&t=' + (new Date()).getTime(), function(data) {
+	    callback(data);
+	});
+}
+
 function cleanString(ks) {
     var ta = ks.toString().split(',');
     var at = [];
@@ -218,10 +224,32 @@ function openArticleInView(url){
 		var content = articleObject[4];
 		var source = articleObject[3];
 		var videolink = articleObject[5];
+		var rate_value =  articleObject[6];
+		
+		if (rate_value == 5) {
+			var checked5 = "checked='true'";
+		} else if (rate_value == 4) {
+			var checked4 = "checked='true'";
+		} else if (rate_value == 3) {
+			var checked3 = "checked='true'";
+		} else if (rate_value == 2) {
+			var checked2 = "checked='true'";
+		} else if (rate_value == 1) {
+			var checked1 = "checked='true'";
+		} else if (rate_value= "") {
+			var none = "checked='true'";
+			checked5 = "checked='false'";
+			checked4 = "checked='false'";
+			checked3 = "checked='false'";
+			checked2 = "checked='false'";
+			checked1 = "checked='false'";
+		}
 
 		var info = "From: " + author + " - <i>" + source + "</i>";
+		var rate = "<input onclick=\"getRating('"+url+"');\" type='radio' id='star5' name='rating' value='5' " + checked5 + " /><label for='star5'></label>" + "<input onclick=\"getRating('"+url+"');\" type='radio' id='star4' name='rating' value='4' " + checked4 + " /><label for='star4'></label>" + "<input type='radio' onclick=\"getRating('"+url+"');\" id='star3' name='rating' value='3' " + checked3 + " /><label for='star3' ></label>" + "<input type='radio' onclick=\"getRating('"+url+"');\" id='star2' name='rating' value='2' " + checked2 + " /><label for='star2'></label>" + "<input type='radio' onclick=\"getRating('"+url+"');\" id='star1' name='rating' value='1' " + checked1 + "/><label for='star1'></label>";
 
 		$('#articleTitle').text(title);
+		$('#articleRating').html(rate);
 		$('#articleAuthorSource').html(info);
 		$('#articleContent').html(content);
 
@@ -234,6 +262,15 @@ function openArticleInView(url){
 			});
 			video.appendTo($('#articleContent'));
 		}	
+	});
+}
+
+function getRating(url){
+
+	var  rate = $('input[name="rating"]:checked').val();
+
+	setRating(rate, url, function(articleObject) {
+		console.log("set rate " + articleObject.rate);
 	});
 }
 
