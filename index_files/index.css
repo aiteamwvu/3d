@@ -116,6 +116,11 @@ legend{
     	top: 10px;
 }
 
+#legend{
+	float: right;
+	z-index: 3;
+}
+
 #contextChoice{
 	color: white;
 	width: 120px;
@@ -208,10 +213,48 @@ legend{
 }
 
 #menu {
-	position: relative;
-	width: 100%;
-	text-align: center;
 	z-index:3;
+}
+
+#legendContent{
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	display: none;
+	width: 85%;
+	background-color: rgba(0,0,0, 0.60);
+	box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+	border: 1px solid rgba(127,255,255,0.25);
+	color: white;
+	padding:10px;
+	text-align: center;
+	z-index: 5;
+}
+
+.modal-content{
+	background-color: rgba(0,0,0, 0.60);
+}
+
+.vertical{
+    display: inline-block;
+}
+
+#mytext {
+    position: relative;
+    top: 50%; 
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.legendelement {
+	width: 60px;
+	height: 80px;
+	box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+	border: 1px solid rgba(127,255,255,0.25);
+	text-align: center;
+	cursor: default;
+	position: relative;
+    top: 50%;
 }
 
 .element {
@@ -261,6 +304,11 @@ legend{
 		color: rgba(127,255,255,0.75);
 	}
 
+.legendsquare {
+  width: 60px;
+  height: 60px;
+}
+
 .square {
   width: 120px;
   height: 120px;
@@ -280,6 +328,12 @@ legend{
 	    left: -5px;
 	    right: -5px;
 	  }
+
+.legendcircle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
 
 .circle {
   width: 140px;
@@ -309,6 +363,7 @@ button {
 	border: 0px;
 	padding: 5px 10px;
 	cursor: pointer;
+	z-index: 10;
 }
 button:hover {
 	background-color: rgba(0,255,255,0.5);
