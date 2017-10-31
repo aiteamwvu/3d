@@ -398,6 +398,14 @@ function init() {
 		transform( targets.grid, 2000 );
 	}, false );
 	transform( targets.table, 2000 );
+	var button = document.getElementById( 'legend' );
+	button.addEventListener( 'click', function ( event ) {
+		$('#legendContent').css('display', 'inline');
+	}, false );
+	var button = document.getElementById( 'closeL' );
+	button.addEventListener( 'click', function ( event ) {
+		$('#legendContent').css('display', 'none');
+	}, false );
 	//
 	window.addEventListener( 'resize', onWindowResize, false );
 }
