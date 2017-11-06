@@ -406,6 +406,14 @@ function init() {
 	button.addEventListener( 'click', function ( event ) {
 		$('#legendContent').css('display', 'none');
 	}, false );
+	var buttonHelp = document.getElementById( 'buttonHelp' );
+	buttonHelp.addEventListener( 'click', function ( event ) {
+		$('#legendHelp').css('display', 'inline');
+	}, false );
+	var buttonClose = document.getElementById( 'closeH' );
+	buttonClose.addEventListener( 'click', function ( event ) {
+		$('#legendHelp').css('display', 'none');
+	}, false );
 	//
 	window.addEventListener( 'resize', onWindowResize, false );
 }
