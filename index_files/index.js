@@ -290,14 +290,6 @@ function run() {
 }
 
 function init() {
-	var buttonHelp = document.getElementById( 'buttonHelp' );
-	buttonHelp.addEventListener( 'click', function ( event ) {
-		$('#legendHelp').css('display', 'inline');
-	}, false );
-	var buttonClose = document.getElementById( 'closeH' );
-	buttonClose.addEventListener( 'click', function ( event ) {
-		$('#legendHelp').css('display', 'none');
-	}, false );
 	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.z = 3000;
 	scene = new THREE.Scene();
@@ -455,3 +447,16 @@ function animate() {
 function render() {
 	renderer.render( scene, camera );
 }
+
+function initialize() {
+	var buttonHelp = document.getElementById( 'buttonHelp' );
+	buttonHelp.addEventListener( 'click', function ( event ) {
+		$('#legendHelp').css('display', 'inline');
+	}, false );
+	var buttonClose = document.getElementById( 'closeH' );
+	buttonClose.addEventListener( 'click', function ( event ) {
+		$('#legendHelp').css('display', 'none');
+	}, false );
+}
+
+initialize();
