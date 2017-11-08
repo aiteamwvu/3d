@@ -88,6 +88,7 @@ function uploadContent(fileName, mimeType, content) {
         file: content
     }, function(result){
         console.log(result);
+        alert("Files uploaded");
         appendResult("Uploaded <a href='" + result.value + "' target='_blank'>here</a>");
         processFiles();
     });
