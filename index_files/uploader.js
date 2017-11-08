@@ -4,6 +4,7 @@ var isRunning = false;
 function drop_handler(ev) {
     ev.preventDefault();
     var dt = ev.dataTransfer;
+    $("#drop_zone").html("Uploading files ...");
     if (dt.items) {
         for (var i=0; i < dt.items.length; i++) {
             var item = dt.items[i];
@@ -88,6 +89,7 @@ function uploadContent(fileName, mimeType, content) {
         file: content
     }, function(result){
         console.log(result);
+        $("#drop_zone").html("Drag & Drop files here");
         alert("Files uploaded");
         appendResult("Uploaded <a href='" + result.value + "' target='_blank'>here</a>");
         processFiles();
