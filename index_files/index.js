@@ -457,6 +457,14 @@ function initialize() {
 	buttonClose.addEventListener( 'click', function ( event ) {
 		$('#legendHelp').css('display', 'none');
 	}, false );
+	var buttonHelp2 = document.getElementById( 'graph' );
+	buttonHelp.addEventListener( 'click', function ( event ) {
+		$('#graph').css('display', 'inline');
+	}, false );
+	var buttonClose2 = document.getElementById( 'closeG' );
+	buttonClose.addEventListener( 'click', function ( event ) {
+		$('#graph').css('display', 'none');
+	}, false );
 }
 
 initialize();
