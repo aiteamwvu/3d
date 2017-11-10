@@ -458,11 +458,11 @@ function initialize() {
 		$('#legendHelp').css('display', 'none');
 	}, false );
 	var buttonHelp2 = document.getElementById( 'graph' );
-	buttonHelp.addEventListener( 'click', function ( event ) {
+	buttonHelp2.addEventListener( 'click', function ( event ) {
 		$('#graphContent').css('display', 'inline');
 	}, false );
 	var buttonClose2 = document.getElementById( 'closeG' );
-	buttonClose.addEventListener( 'click', function ( event ) {
+	buttonClose2.addEventListener( 'click', function ( event ) {
 		$('#graphContent').css('display', 'none');
 	}, false );
 }
