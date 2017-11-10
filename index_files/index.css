@@ -233,8 +233,8 @@ legend{
 
 #graphContent {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 50px;
+	left: 50px;
 	display: none;
 	width: 100%;
 	height: 100%;
