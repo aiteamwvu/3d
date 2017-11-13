@@ -200,7 +200,7 @@ function listing(){
 
 	var numArticlesToList = 10;
 
-	for( var i= 0; i < 8*numArticlesToList; i+=8){
+	for( var i= 0; i < 9*numArticlesToList; i+=9){
 
 		var list = document.createElement('li');
 		list.className = 'list-group-item d-flex justify-content-between align-items-center';
@@ -294,7 +294,7 @@ function init() {
 	camera.position.z = 3000;
 	scene = new THREE.Scene();
 	// table
-	for ( var i = 0; i < table.length; i += 8 ) {
+	for ( var i = 0; i < table.length; i += 9 ) {
 		var element = document.createElement( 'div' );
 		element.className = 'element';
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
