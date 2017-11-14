@@ -28,9 +28,13 @@ var profile;
 
 function getTopicsMenu() {
 
-	$('.userSetUpId').css("display", "none");
+	$('#userSetUpId').css("display", "none");
 	$('#userView').css("display", "inline");
+	$('#addK').css("display", "none");
+	$('#delK').css("display", "none");
 
+	//need to add code to remove keywords
+	
 	keys = $('#newKeywordsId').val().split(',');
 		setUser(profile.getEmail(), keys, function(userObject) {
 		console.log("set keywords " + userObject.keywords);
@@ -384,18 +388,37 @@ function init() {
 	var button = document.getElementById( 'table' );
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.table, 2000 );
+		if ($('#container').is(':empty')){
+			$('#graphContent').css('display', 'none');
+			init();
+		}
 	}, false );
 	var button = document.getElementById( 'sphere' );
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.sphere, 2000 );
+		if ($('#container').is(':empty')){
+			$('#graphContent').css('display', 'none');
+			init();
+			transform( targets.sphere, 2000 );
+		}
 	}, false );
 	var button = document.getElementById( 'helix' );
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.helix, 2000 );
+		if ($('#container').is(':empty')){
+			$('#graphContent').css('display', 'none');
+			init();
+			transform( targets.helix, 2000 );
+		}
 	}, false );
 	var button = document.getElementById( 'grid' );
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.grid, 2000 );
+		if ($('#container').is(':empty')){
+			$('#graphContent').css('display', 'none');
+			init();
+			transform( targets.grid, 2000 );
+		}
 	}, false );
 	transform( targets.table, 2000 );
 	var button = document.getElementById( 'legend' );
@@ -449,21 +472,38 @@ function render() {
 }
 
 function initialize() {
+	var buttonAddK = document.getElementById( 'addKeyword' );
+	buttonAddK.addEventListener( 'click', function ( event ) {
+		$('#addK').css('display', 'inline');
+	}, false );
+
+	var buttonDelK = document.getElementById( 'removeKeyword' );
+	buttonDelK.addEventListener( 'click', function ( event ) {
+		$('#delK').css('display', 'inline');
+	}, false );
+
+	var buttonGoBack = document.getElementById( 'goBack' );
+	buttonGoBack.addEventListener( 'click', function ( event ) {
+		$('#userSetUpId').css("display", "inline");
+		$('#userView').css("display", "none");
+	}, false );
+	
 	var buttonHelp = document.getElementById( 'buttonHelp' );
 	buttonHelp.addEventListener( 'click', function ( event ) {
 		$('#legendHelp').css('display', 'inline');
 	}, false );
+	
 	var buttonClose = document.getElementById( 'closeH' );
 	buttonClose.addEventListener( 'click', function ( event ) {
 		$('#legendHelp').css('display', 'none');
 	}, false );
-	var buttonHelp2 = document.getElementById( 'graph' );
-	buttonHelp2.addEventListener( 'click', function ( event ) {
+	
+	var buttonGraphDetail = document.getElementById( 'graph' );
+	buttonGraphDetail.addEventListener( 'click', function ( event ) {
+		$('#container').empty();
 		$('#graphContent').css('display', 'inline');
-	}, false );
-	var buttonClose2 = document.getElementById( 'closeG' );
-	buttonClose2.addEventListener( 'click', function ( event ) {
-		$('#graphContent').css('display', 'none');
+		//call function to show graph
+		//function should update DOM graphContent div for showing result
 	}, false );
 }
 
