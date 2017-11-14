@@ -74,25 +74,32 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4">
-					<div class="needLogIn card userSetUpId">
-						  <div class="card-body">
-						    <h4 class="card-title">Your Keywords</h4>
-						    <ul class="ullist" id="listKeywords">
-						    </ul>
-						    <ul class="ullist" id="listKeywords2">
-						    </ul>
-						  </div>
-					</div>
-					<br/>
-					<div class="needLogIn card userSetUpId">
-						<div class="card-body">
-						<h6 class="card-title">Add new keywords <small>(separated by a comma)</small></h6>
-						<textarea  class="col-10 align-self-center" rows="3" cols="10" id="newKeywordsId" placeholder="new keywords"></textarea>
+					<div id="userSetUpId" class="needLogIn">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">Your Current Keywords</h4>
+								<ul class="ullist" id="listKeywords">
+								</ul>
+								<ul class="ullist" id="listKeywords2">
+								</ul>
+								<button class="btn-sm" id="addKeyword">Add new</button>
+								<button class="btn-sm" id="removeKeyword">Delete</button>
+							</div>
+							<div id="addK" class="card-body">
+								<h6 class="card-title">Add new keywords <small>(separated by a comma)</small></h6>
+								<textarea  class="col-10 align-self-center" rows="1" cols="10" id="newKeywordsId" placeholder="new keywords"></textarea>
+							</div>
+							<div id="delK" class="card-body">
+								<h6 class="card-title">Enter keywords to remove <small>(separated by a comma)</small></h6>
+								<textarea  class="col-10 align-self-center" rows="1" cols="10" id="newKeywordsId" placeholder="delete keywords"></textarea>
+							</div>
 						</div>
+						<br/>
+						<button class="align-self-center" id="continueId" onclick="getTopicsMenu()">Save and/or Explore</button>
 					</div>
-					<br/>
-					<button class="needLogIn userSetUpId align-self-center" id="continueId" onclick="getTopicsMenu()">Continue</button>
 					<div class="needLogIn" id="userView">
+						<button class="btn-sm" id="goBack">Go back to settings</button>
+						<br/><br/>
 						<div class="card" style="width: 20rem;">
 						  <div class="card-body">
 						    <h4 class="card-title">Select or Enter a Topic</h4>
@@ -114,7 +121,7 @@
 						</div>
 						<br/>
 						  <fieldset>
-						    <legend>10 Most recent Articles</legend>
+						    <legend>Highest ranked Articles (max 10)</legend>
 							    <div>
 							    	<ul class="list-group" id="listArticles">
 							    	</ul>
@@ -132,7 +139,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div id="graphView" class="col-sm-12">
+						<div id="graphView" class="col-sm-11">
 							<div class="row">
 								<div id="menu" class="col-sm-11">
 									<button id="table">TABLE</button>
@@ -165,18 +172,10 @@
 									</div>
 								</div>
 							</div>
-							<div id="graphContent" class="row">
-								<div class="col-sm-12 modal-content">
-									 <div class="modal-header">
-										<h5 class="modal-title">Graph</h5>
-										<button id="closeG" class="close float-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									</div>
-									<div class="modal-body">
-										<iframe id="graphFrame" src="http://aiwvu.ml/graph/"></iframe>
-									</div>
-								</div>
-							</div>
 							<div id="container"></div>
+							<div id="graphContent" class="row">
+								<iframe id="graphFrame" src="http://aiwvu.ml/graph/"></iframe>
+							</div>
 						</div>
 					</div>
 				</div>
