@@ -83,6 +83,14 @@ legend{
 	width: 45%;
 }
 
+#addK{
+	display: none;
+}
+
+#delK{
+	display: none;
+}
+
 .navbar-dark .navbar-nav .nav-link{
 	color: rgba(127,255,255,0.75);
 	padding-left: 10px;
@@ -105,15 +113,15 @@ legend{
 	display: none;
 }
 
-#userView{
-	position: absolute;
-	top: 0px;
+#articleView{
+	margin: 30px;
 }
 
 #graphView{
 	visibility: hidden;
 	position: absolute;
     	top: 10px;
+	margin: 20px;
 }
 
 #legend{
@@ -232,24 +240,17 @@ legend{
 }
 
 #graphContent {
-	position: absolute;
-	top: 50px;
-	left: 50px;
 	display: none;
-	width: 100%;
+	width: 90%;
 	height: 100%;
-	background-color: rgba(0,0,0, 0.60);
-	box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
-	border: 1px solid rgba(127,255,255,0.25);
-	color: white;
 	padding:10px;
-	text-align: center;
 	z-index: 5;
 }
 
 #graphFrame {
-	width: 100%;
+	width:95%;
 	height: 100%;
+	margin-top:30px;
 }
 
 #legendHelp{
