@@ -14,7 +14,7 @@ $(document).ready(function() {
 
       $("#container").empty();
       $("#listArticles").empty();
-      $('#graphContent').css('display', 'none');
+      $('#3d-graph').css('display', 'none');
 
       search(window.location.hash?window.location.hash.replace("#",""):"");
       getData(window.location.hash?window.location.hash.replace("#",""):"android");
@@ -85,7 +85,7 @@ function searchInput(){
 
       $("#container").empty();
       $("#listArticles").empty();
-      $('#graphContent').css('display', 'none');
+      $('#3d-graph').css('display', 'none');
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
       getData(window.location.hash?window.location.hash.replace("#",""):"android");
@@ -422,7 +422,7 @@ function init() {
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.table, 2000 );
 		if ($('#container').is(':empty')){
-			$('#graphContent').css('display', 'none');
+			$('#3d-graph').css('display', 'none');
 			init();
 		}
 	}, false );
@@ -430,7 +430,7 @@ function init() {
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.sphere, 2000 );
 		if ($('#container').is(':empty')){
-			$('#graphContent').css('display', 'none');
+			$('#3d-graph').css('display', 'none');
 			init();
 			transform( targets.sphere, 2000 );
 		}
@@ -439,7 +439,7 @@ function init() {
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.helix, 2000 );
 		if ($('#container').is(':empty')){
-			$('#graphContent').css('display', 'none');
+			$('#3d-graph').css('display', 'none');
 			init();
 			transform( targets.helix, 2000 );
 		}
@@ -448,7 +448,7 @@ function init() {
 	button.addEventListener( 'click', function ( event ) {
 		transform( targets.grid, 2000 );
 		if ($('#container').is(':empty')){
-			$('#graphContent').css('display', 'none');
+			$('#3d-graph').css('display', 'none');
 			init();
 			transform( targets.grid, 2000 );
 		}
