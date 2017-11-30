@@ -34,8 +34,20 @@ function getTopicsMenu() {
 	$('#addK').css("display", "none");
 	$('#delK').css("display", "none");
 
-	delkeys = $('#delKeywordsId').val().split(',');
-	addkeys = $('#newKeywordsId').val().split(',');
+	if (!$("#delKeywordsId").val())
+	{
+		delkeys = $('#delKeywordsId').val().split(',');
+	}
+	else{
+		delkeys = "";
+	}
+	if (!$("#newKeywordsId").val())
+	{
+		addkeys = $('#newKeywordsId').val().split(',');
+	}
+	else{
+		addkeys = "";
+	}
 
 	keys = addkeys + ', ' + delkeys;
 	
