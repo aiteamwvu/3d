@@ -1,4 +1,4 @@
-var mainUrl = 'http://localhost:8000/' + '#';
+var mainUrl = 'http://aiwvu.ml/3d/' + '#';
 
 $(document).ready(function() {
 	
