@@ -8,12 +8,12 @@
 		<meta name="google-signin-client_id" content="111919209403-c5kbkhsd0qki5hqdsde9vkfv4ds7f888.apps.googleusercontent.com">
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="./index_files/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="./index_files/index.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 	<body data-gr-c-s-loaded="true" style="">
 		<nav class="navbar navbar-expand-lg nav-fill navbar-dark bg-black">
-			<img class="navbar-brand" src="index_files/newlogo.png">
+			<img class="navbar-brand" src="newlogo.png">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
@@ -87,7 +87,7 @@
 							</div>
 							<div id="addK" class="card-body">
 								<h6 class="card-title">Add new keywords <small>(separated by a comma)</small></h6>
-								<textarea  class="col-10 align-self-center" rows="1" cols="10" id="addKeywordsId" placeholder="new keywords"></textarea>
+								<textarea  class="col-10 align-self-center" rows="1" cols="10" id="newKeywordsId" placeholder="new keywords"></textarea>
 							</div>
 							<div id="delK" class="card-body">
 								<h6 class="card-title">Enter keywords to remove <small>(separated by a comma)</small></h6>
@@ -121,7 +121,7 @@
 						</div>
 						<br/>
 						  <fieldset>
-						    <legend>Highest ranked Articles (max 10)</legend>
+						    <legend>Highest ranked Articles</legend>
 							    <div>
 							    	<ul class="list-group" id="listArticles">
 							    	</ul>
@@ -152,10 +152,6 @@
 									<button id="legend">LEGEND</button>
 								</div>
 							</div>
-							<div class="modal" tabindex="-1" role="dialog">
-							  <div class="modal-dialog" role="document">
-							  </div>
-							</div>
 							<div id="legendContent" class="row">
 								<div class="col-sm-12 modal-content">
 									 <div class="modal-header">
@@ -173,23 +169,36 @@
 								</div>
 							</div>
 							<div id="container"></div>
-							<div id="graphContent" class="row">
-								<iframe id="graphFrame" src="http://aiwvu.ml/graph/"></iframe>
+							<div data-gr-c-s-loaded="true">
+								<div id="3d-graph" class="row">
+									<div class="graph-nav-info">
+						                MOVE mouse &amp; press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan
+						            </div>
+						            <div class="graph-info-msg"></div>
+						            <div class="graph-tooltip"></div>
+						            <canvas width="1920" height="722" style="width: 1920px; height: 722px;"></canvas>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script src="./index_files/three.js"></script>
-		<script src="./index_files/tween.min.js"></script>
-		<script src="./index_files/TrackballControls.js"></script>
-		<script src="./index_files/CSS3DRenderer.js"></script>
+		<script src="three.js"></script>
+		<script src="tween.min.js"></script>
+		<script src="TrackballControls.js"></script>
+		<script src="CSS3DRenderer.js"></script>
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-		<script src="./index_files/bootstrap.min.js"></script>
-		<script src="./index_files/index.js"></script>
-		<script src="./index_files/uploader.js"></script>
+		<script src="bootstrap.min.js"></script>
+		<script src="index.js"></script>
+		<script src="uploader.js"></script>
+		<script src="./stopwords.js"></script>
+        <script src="./3d-force-graph.min.js"></script>
+        <script src="./qwest.min.js"></script>
+        <script src="./papaparse.min.js"></script>
+        <script src="./data-set-loader.js"></script>
+        <script src="./carlos.js"></script>
 		<script type="text/javascript">search(window.location.hash?window.location.hash.replace("#",""):"");</script>
 	</body>
 </html>
