@@ -34,7 +34,10 @@ function getTopicsMenu() {
 	$('#addK').css("display", "none");
 	$('#delK').css("display", "none");
 
-	//need to add code to remove keywords
+	delkeys = $('#delKeywordsId').val().split(',');
+	addkeys = $('#newKeywordsId').val().split(',');
+
+	keys = addkeys + ', ' + delkeys;
 	
 	keys = $('#newKeywordsId').val().split(',');
 		setUser(profile.getEmail(), keys, function(userObject) {
