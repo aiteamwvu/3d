@@ -57,7 +57,7 @@ function getTopicsMenu() {
 	
 	delKeyUser(profile.getEmail(), delkeys, function(userObject){
 		console.log("delete keywords " + userObject.keywords);
-	}
+	});
 
 	getUser(profile.getEmail(), function(userObject) {
 		var userKeys = cleanString(userObject.keywords);
