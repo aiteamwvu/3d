@@ -1,4 +1,4 @@
-var mainUrl = 'http://aiwvu.ml/3d/' + '#';
+var mainUrl = 'http://localhost:8000/' + '#';
 
 $(document).ready(function() {
 	
@@ -17,6 +17,7 @@ $(document).ready(function() {
       $('#graphContent').css('display', 'none');
 
       search(window.location.hash?window.location.hash.replace("#",""):"");
+      getData(window.location.hash?window.location.hash.replace("#",""):"android");
     });
 	 
     $("#saveContextButton").click(function() {
@@ -36,6 +37,7 @@ function getTopicsMenu() {
 
 	if (!$("#delKeywordsId").val() == "")
 	{
+		alert('del not empty');
 		delkeys = $('#delKeywordsId').val().split(',');
 	}
 	else{
@@ -43,18 +45,20 @@ function getTopicsMenu() {
 	}
 	if (!$("#newKeywordsId").val() == "")
 	{
+		alert('del not empty');
 		addkeys = $('#newKeywordsId').val().split(',');
 	}
 	else{
 		addkeys = "";
 	}
-
-	//keys = addkeys + ', ' + delkeys;
 	
+	//keys = addkeys + ', ' + delkeys;
+	//alert(keys);
+
 	setUser(profile.getEmail(), addkeys, function(userObject) {
 		console.log("set keywords " + userObject.keywords);
 	});
-	
+
 	delKeyUser(profile.getEmail(), delkeys, function(userObject){
 		console.log("delete keywords " + userObject.keywords);
 	});
@@ -84,6 +88,7 @@ function searchInput(){
       $('#graphContent').css('display', 'none');
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
+      getData(window.location.hash?window.location.hash.replace("#",""):"android");
 	
 }
 
@@ -120,8 +125,8 @@ function getUser(email, callback) {
         callback(data);
     });
   }
- 
- function delKeyUser(email, keywords, callback) {
+
+  function delKeyUser(email, keywords, callback) {
     $.getJSON('http://aiwvu.ml:5000/delete_keywords?email=' + email + '&keywords=' + keywords + '&t=' + (new Date()).getTime(), function(data) {
         callback(data);
     });
@@ -188,6 +193,7 @@ function onSignIn(googleUser) {
 
     $('.needLogIn').css("visibility", "visible");
     $('#userView').css("display", "none");
+
   }
     
   function signOut() {
@@ -410,6 +416,7 @@ function init() {
 	controls.rotateSpeed = 0.5;
 	controls.minDistance = 500;
 	controls.maxDistance = 6000;
+
 	controls.addEventListener( 'change', render );
 	var button = document.getElementById( 'table' );
 	button.addEventListener( 'click', function ( event ) {
@@ -498,6 +505,7 @@ function render() {
 }
 
 function initialize() {
+
 	var buttonAddK = document.getElementById( 'addKeyword' );
 	buttonAddK.addEventListener( 'click', function ( event ) {
 		$('#addK').css('display', 'inline');
@@ -513,21 +521,21 @@ function initialize() {
 		$('#userSetUpId').css("display", "inline");
 		$('#userView').css("display", "none");
 	}, false );
-	
+
 	var buttonHelp = document.getElementById( 'buttonHelp' );
 	buttonHelp.addEventListener( 'click', function ( event ) {
 		$('#legendHelp').css('display', 'inline');
 	}, false );
-	
+
 	var buttonClose = document.getElementById( 'closeH' );
 	buttonClose.addEventListener( 'click', function ( event ) {
 		$('#legendHelp').css('display', 'none');
 	}, false );
-	
+
 	var buttonGraphDetail = document.getElementById( 'graph' );
 	buttonGraphDetail.addEventListener( 'click', function ( event ) {
 		$('#container').empty();
-		$('#graphContent').css('display', 'inline');
+		$('#3d-graph').css('display', 'inline');
 		//call function to show graph
 		//function should update DOM graphContent div for showing result
 	}, false );
