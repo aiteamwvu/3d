@@ -14,6 +14,7 @@ $(document).ready(function() {
 
       $("#container").empty();
       $("#listArticles").empty();
+      $('#graphContent').css('display', 'none');
 
       search(window.location.hash?window.location.hash.replace("#",""):"");
     });
@@ -62,6 +63,7 @@ function searchInput(){
 
       $("#container").empty();
       $("#listArticles").empty();
+      $('#graphContent').css('display', 'none');
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
 	
