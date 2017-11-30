@@ -51,8 +51,7 @@ function getTopicsMenu() {
 
 	keys = addkeys + ', ' + delkeys;
 	
-	keys = $('#newKeywordsId').val().split(',');
-		setUser(profile.getEmail(), keys, function(userObject) {
+	setUser(profile.getEmail(), keys, function(userObject) {
 		console.log("set keywords " + userObject.keywords);
 	});
 
