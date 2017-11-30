@@ -49,11 +49,15 @@ function getTopicsMenu() {
 		addkeys = "";
 	}
 
-	keys = addkeys + ', ' + delkeys;
+	//keys = addkeys + ', ' + delkeys;
 	
-	setUser(profile.getEmail(), keys, function(userObject) {
+	setUser(profile.getEmail(), addkeys, function(userObject) {
 		console.log("set keywords " + userObject.keywords);
 	});
+	
+	delKeyUser(profile.getEmail(), delkeys, function(userObject){
+		console.log("delete keywords " + userObject.keywords);
+	}
 
 	getUser(profile.getEmail(), function(userObject) {
 		var userKeys = cleanString(userObject.keywords);
@@ -113,6 +117,12 @@ function getUser(email, callback) {
   
  function setUser(email, keywords, callback) {
     $.getJSON('http://aiwvu.ml:5000/set_user?email=' + email + '&keywords=' + keywords + '&t=' + (new Date()).getTime(), function(data) {
+        callback(data);
+    });
+  }
+ 
+ function delKeyUser(email, keywords, callback) {
+    $.getJSON('http://aiwvu.ml:5000/delete_keywords?email=' + email + '&keywords=' + keywords + '&t=' + (new Date()).getTime(), function(data) {
         callback(data);
     });
   }
