@@ -34,14 +34,14 @@ function getTopicsMenu() {
 	$('#addK').css("display", "none");
 	$('#delK').css("display", "none");
 
-	if (!$("#delKeywordsId").val())
+	if (!$("#delKeywordsId").val() == "")
 	{
 		delkeys = $('#delKeywordsId').val().split(',');
 	}
 	else{
 		delkeys = "";
 	}
-	if (!$("#newKeywordsId").val())
+	if (!$("#newKeywordsId").val() == "")
 	{
 		addkeys = $('#newKeywordsId').val().split(',');
 	}
