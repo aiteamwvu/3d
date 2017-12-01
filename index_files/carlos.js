@@ -109,5 +109,3 @@ function loadGraph(url) {
 	    .forceEngine('ngraph')
 	    //.jsonUrl(url);
 }
-
-console.log("HIGH");
