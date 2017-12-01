@@ -36,7 +36,6 @@ function getTopicsMenu() {
 
 	if (!$("#delKeywordsId").val() == "")
 	{
-		alert('del not empty');
 		delkeys = $('#delKeywordsId').val().split(',');
 	}
 	else{
@@ -44,16 +43,12 @@ function getTopicsMenu() {
 	}
 	if (!$("#newKeywordsId").val() == "")
 	{
-		alert('del not empty');
 		addkeys = $('#newKeywordsId').val().split(',');
 	}
 	else{
 		addkeys = "";
 	}
 	
-	//keys = addkeys + ', ' + delkeys;
-	//alert(keys);
-
 	setUser(profile.getEmail(), addkeys, function(userObject) {
 		console.log("set keywords " + userObject.keywords);
 	});
