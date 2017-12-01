@@ -17,7 +17,6 @@ $(document).ready(function() {
       $('#3d-graph').css('display', 'none');
 
       search(window.location.hash?window.location.hash.replace("#",""):"");
-      getData(window.location.hash?window.location.hash.replace("#",""):"android");
     });
 	 
     $("#saveContextButton").click(function() {
@@ -88,8 +87,6 @@ function searchInput(){
       $('#3d-graph').css('display', 'none');
 	    
       search(window.location.hash?window.location.hash.replace("#",""):"");
-      getData(window.location.hash?window.location.hash.replace("#",""):"android");
-	
 }
 
  function goToGraphView(){    
@@ -535,9 +532,8 @@ function initialize() {
 	var buttonGraphDetail = document.getElementById( 'graph' );
 	buttonGraphDetail.addEventListener( 'click', function ( event ) {
 		$('#container').empty();
-		$('#3d-graph').css('display', 'inline');
-		//call function to show graph
-		//function should update DOM graphContent div for showing result
+		$('#3d-graph').css('display', 'inherit');
+      		getData(window.location.hash?window.location.hash.replace("#",""):"android");
 	}, false );
 }
 
