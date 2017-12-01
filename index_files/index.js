@@ -50,7 +50,7 @@ function setTopicsMenu() {
 		});
 	}
 	
-	getTopicsMenu();
+	setTimeout(getTopicsMenu,2000);
 }
 	
 function getTopicsMenu()	
