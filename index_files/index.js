@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 var profile;
 
-function getTopicsMenu() {
+function setTopicsMenu() {
 
 	$('#userSetUpId').css("display", "none");
 	$('#userView').css("display", "inline");
@@ -37,26 +37,24 @@ function getTopicsMenu() {
 	if (!$("#delKeywordsId").val() == "")
 	{
 		delkeys = $('#delKeywordsId').val().split(',');
+		delKeyUser(profile.getEmail(), delkeys, function(userObject){
+		    console.log("delete keywords " + userObject.keywords);
+		});
 	}
-	else{
-		delkeys = "";
-	}
+	
 	if (!$("#newKeywordsId").val() == "")
 	{
 		addkeys = $('#newKeywordsId').val().split(',');
-	}
-	else{
-		addkeys = "";
+		setUser(profile.getEmail(), addkeys, function(userObject) {
+		     console.log("set keywords " + userObject.keywords);
+		});
 	}
 	
-	setUser(profile.getEmail(), addkeys, function(userObject) {
-		console.log("set keywords " + userObject.keywords);
-	});
-
-	delKeyUser(profile.getEmail(), delkeys, function(userObject){
-		console.log("delete keywords " + userObject.keywords);
-	});
-
+	getTopicsMenu();
+}
+	
+function getTopicsMenu()	
+{	
 	getUser(profile.getEmail(), function(userObject) {
 		var userKeys = cleanString(userObject.keywords);
 			$("#topicTypeId").autocomplete({
@@ -69,7 +67,7 @@ function getTopicsMenu() {
 			$("#topicSelectId").append('<option value=' + userKeys[k] + '>' + userKeys[k] + '</option>');
 		}
 	});
-    }
+ }
 
 function searchInput(){
 	
@@ -512,6 +510,29 @@ function initialize() {
 	buttonGoBack.addEventListener( 'click', function ( event ) {
 		$('#userSetUpId').css("display", "inline");
 		$('#userView').css("display", "none");
+		
+		getUser(profile.getEmail(),  function(userObject) {
+		      console.log("get keywords " + userObject.keywords);
+		      var keys = cleanString(userObject.keywords);
+
+		      $("#listKeywords").empty();
+		      $("#listKeywords2").empty();
+
+		      for(var i =0; i <= keys.length/2; i++){
+			var list = document.createElement('li');
+				list.className = 'list';
+				list.innerHTML = keys[i];
+				document.getElementById('listKeywords').appendChild(list);
+		      }
+
+		      for(var i =Math.round(keys.length/2)+1; i < keys.length; i++){
+			var list = document.createElement('li');
+				list.className = 'list';
+				list.innerHTML = keys[i];
+				document.getElementById('listKeywords2').appendChild(list);
+		      }
+		 });
+		
 	}, false );
 
 	var buttonHelp = document.getElementById( 'buttonHelp' );
